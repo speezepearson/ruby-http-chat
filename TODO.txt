@@ -1,0 +1,17 @@
+- Document.
+
+- Not persistent yet -- once I learn enough SQL, I'll change the
+  Server class (and maybe Channel, too) to keep a database up to date
+  when something changes.
+
+- Sending plaintext passwords in our POST requests is dumb. Either the
+  server should *only* communicate over HTTPS, or we should do
+  something neat with public-key cryptography, or the "password" field
+  when you post should be replaced with an "HMAC" field (the latter
+  two possibilities would almost certainly require Javascript, which I
+  do not know).
+
+- It's a drag having to manually include username/password with every
+  message you write -- I eliminated "logging in" to make the protocol
+  more stateless on the server side, but the client should still be
+  able to "log in" by requesting a magic cookie.

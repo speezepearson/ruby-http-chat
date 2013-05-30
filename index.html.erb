@@ -1,0 +1,42 @@
+<html>
+<body>
+
+a <br />
+<iframe name="postframe" height=400 width=600></iframe><br />
+<iframe name="statusframe" height=50 width=600></iframe><br />
+
+<form action="/posts" target="postframe" method="get">
+    Channel: <input type="text" name="chname" /><br />
+    Start: <input type="number" name="start" /><br />
+    Stop: <input type="number" name="stop" /><br />
+    <input type="submit" value="List posts" /><br />
+</form>
+<br />
+<form action="/users" target="statusframe" method="post">
+    Username: <input type="text" name="uname" /><br />
+    Password: <input type="text" name="password" /><br />
+    <input type="submit" value="Register" /><br />
+</form>
+<br />
+<form action="/posts" target="statusframe" method="post">
+    Username: <input type="text" name="uname" /><br />
+    Password: <input type="password" name="password" /><br />
+    Channel: <input type="text" name="chname" /><br />
+    Content: <input type="text" name="text" /><br />
+    <input type="submit" value="Post message" /><br />
+</form>
+<br />
+<form action="/channels" target="statusframe" method="post">
+  Channelname: <input type="text" name="chname" /><br />
+  <input type="submit" value="Create channel" /><br />
+</form>
+<br />
+<form action="/users" target="statusframe" method="get">
+    <input type="submit" value="List users" /><br />
+</form>
+<form action="/channels" target="statusframe" method="get">
+    <input type="submit" value="List channels" /><br />
+</form>
+
+</body>
+</html>
