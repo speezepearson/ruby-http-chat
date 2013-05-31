@@ -1,7 +1,9 @@
-require "~/chat/channel.rb"
+require File.join(File.dirname(__FILE__), "channel.rb")
 
 class Server
-  attr_accessor, :passwords, :channels
+  # Allows access to all the serverside state: creating/listing
+  #  users/channels, posting/listing messages, checking login
+  #  credentials, etc.
   def initialize
     @passwords = {}
     @channels = {}
@@ -28,5 +30,11 @@ class Server
   end
   def list_channels
     return @channels.keys
+  end
+  def new_post(chname, uname, text)
+    @channels[chname].add_post(uname, text)
+  end
+  def get_posts(chname, start, stop)
+    return @channels[chname].posts[start..stop]
   end
 end
