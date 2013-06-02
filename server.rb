@@ -4,37 +4,39 @@ class Server
   # Allows access to all the serverside state: creating/listing
   #  users/channels, posting/listing messages, checking login
   #  credentials, etc.
-  def initialize
-    @passwords = {}
-    @channels = {}
+  def initialize(database)
+    @user_db = UserDB.new(database)
+    @channel_db = ChannelDB.new(database)
   end
   
   def password_correct?(uname, password)
-    return @passwords[uname] == password
+    return false if !self.user_exists? uname
+    user = @user_db[uname]
+    return password == @user_db[uname].password
   end
-  def uname_taken? uname
-    return @passwords.include? uname
+  def user_exists? uname
+    return ! @user_db[uname].nil?
   end
   def create_user(uname, password)
-    @passwords[uname] = password
+    @user_db.create_user(uname, password)
   end
-  def list_users
-    return @passwords.keys
+  def list_unames
+    return @user_db.list_names
   end
 
-  def chname_taken? chname
-    return @channels.include? chname
+  def channel_exists? chname
+    return ! @channel_db[chname].nil?
   end
   def create_channel chname
-    @channels[chname] = Channel.new(chname)
+    @channel_db.create_channel(chname)
   end
-  def list_channels
-    return @channels.keys
+  def list_chnames
+    return @channel_db.list_names
   end
-  def new_post(chname, uname, text)
-    @channels[chname].add_post(uname, text)
+  def new_post(chname, uname, content)
+    @channel_db[chname].new_post(uname, content)
   end
   def get_posts(chname, start, stop)
-    return @channels[chname].posts[start..stop]
+    return @channel_db[chname].posts(start..stop)
   end
 end

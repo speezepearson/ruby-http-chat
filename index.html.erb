@@ -1,42 +1,64 @@
 <html>
 <body>
 
-a <br />
-<iframe name="postframe" height=400 width=600></iframe><br />
-<iframe name="statusframe" height=50 width=600></iframe><br />
-
-<form action="/posts" target="postframe" method="get">
-    Channel: <input type="text" name="chname" /><br />
-    Start: <input type="number" name="start" /><br />
-    Stop: <input type="number" name="stop" /><br />
-    <input type="submit" value="List posts" /><br />
-</form>
-<br />
-<form action="/users" target="statusframe" method="post">
-    Username: <input type="text" name="uname" /><br />
-    Password: <input type="text" name="password" /><br />
-    <input type="submit" value="Register" /><br />
-</form>
-<br />
-<form action="/posts" target="statusframe" method="post">
-    Username: <input type="text" name="uname" /><br />
-    Password: <input type="password" name="password" /><br />
-    Channel: <input type="text" name="chname" /><br />
-    Content: <input type="text" name="text" /><br />
-    <input type="submit" value="Post message" /><br />
-</form>
-<br />
-<form action="/channels" target="statusframe" method="post">
-  Channelname: <input type="text" name="chname" /><br />
-  <input type="submit" value="Create channel" /><br />
-</form>
-<br />
-<form action="/users" target="statusframe" method="get">
-    <input type="submit" value="List users" /><br />
-</form>
-<form action="/channels" target="statusframe" method="get">
-    <input type="submit" value="List channels" /><br />
-</form>
+<table border=1>
+    <tr>
+        <td>
+            <iframe name="postsframe" height=400 width=400></iframe><br />
+            <form action="/posts" target="postsframe" method="get">
+                <input type="submit" value="List posts" />
+                from <input type="number" name="start" /><br />
+                to <input type="number" name="stop" /><br />
+            </form>
+        </td>
+        <td>
+            <iframe name="listframe" height=400 width=200></iframe><br />
+            <form action="/users" target="listframe" method="get">
+                <input type="submit" value="List users" />
+            </form>
+            <form action="/channels" target="listframe" method="get">
+                <input type="submit" value="List channels" /><br />
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan=2>
+            <iframe name="statusframe" height=50 width=600></iframe><br />
+            <table><tr><td>
+                <form action="/register" target="statusframe" method="post">
+                    Username: <br />
+                    <input type="text" name="uname" /><br />
+                    Password:<br />
+                    <input type="password" name="password" /><br />
+                    <input type="submit" value="Register" /><br />
+                </form></td><td>
+                <form action="/login" target="statusframe" method="get">
+                    Username: <br />
+                    <input type="text" name="uname" /><br />
+                    Password:<br />
+                    <input type="password" name="password" /><br />
+                    <input type="submit" value="Log in" /><br />
+                </form></td><td>
+            </tr><tr><td>
+                <form action="/channels" target="statusframe" method="post">
+                  Channelname: <br />
+                  <input type="text" name="chname" /><br />
+                  <input type="submit" value="Create channel" /><br />
+                </form></td><td>
+                <form action="/join_channel" target="statusframe" method="get">
+                  Channelname: <br />
+                  <input type="text" name="chname" /><br />
+                  <input type="submit" value="Join channel" /><br />
+                </form></td>
+            </tr><tr><td colspan=2>
+                <form action="/posts" target="statusframe" method="post">
+                    Content: <input type="text" name="content" /><br />
+                    <input type="submit" value="Post message" /><br />
+                </form></td>
+            </tr></table>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
