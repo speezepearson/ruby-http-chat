@@ -1,6 +1,6 @@
 <html>
 <body>
-<b><% title %></b><br />
-<% content %>
+<b><%= params[:title] %></b><br />
+<%= params[:content].join("<br />") %>
 </body>
 </html>

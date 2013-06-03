@@ -2,3 +2,8 @@
   accept passwords (and login cookies!) over HTTPS, or we should do
   something neat with public-key cryptography (which would require
   Javascript, which I, alas, don't know.)
+
+- Lower priority: as currently implemented, even conceptually simple
+  operations like creating a channel involve dispatching multiple
+  queries to whatever database we're using. This is correct but
+  inefficient. Some sort of caching would be preferable.

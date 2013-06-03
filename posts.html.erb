@@ -1,6 +1,6 @@
 <html>
 <body>
-<b><% title %></b><br />
-<% content %>
+<b><%= params[:title] %></b><br />
+<%= params[:posts].join("<br />") %>
 </body>
 </html>
